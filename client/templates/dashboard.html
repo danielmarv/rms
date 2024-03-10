@@ -1,19 +1,326 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content  %}
+<head>
+    <title>BU | Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Admin template that can be used to build dashboards for CRM, CMS, etc." />
+    <meta name="author" content="Potenza Global Solutions" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- app favicon -->
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <!-- plugin stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../static/css/vendors.css" />
+    <!-- app style -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
+</head>
 
-{% include "status.html" %}
+<body>
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img alt="loader" src="../static/images/loader/loader.svg" />
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header class="app-header top-bar">
+                <!-- begin navbar -->
+                <nav class="navbar navbar-expand-md">
 
-<div class="row">
-    <div class="col-md-5">
-        <h5></h5>
-        
+                    <!-- begin navbar-header -->
+                    <div class="navbar-header d-flex align-items-center">
+                        <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
+                        <a class="navbar-brand" href="dashboard.html">
+                            <img src="../static/images/logo.png" class="img-fluid logo-desktop" alt="logo" />
+                            <img src="../static/images/logo.png" class="img-fluid logo-mobile" alt="logo" />
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti ti-align-left"></i>
+                    </button>
+                    <!-- end navbar-header -->
+                    <!-- begin navigation -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="navigation d-flex">
+                            <ul class="navbar-nav nav-left">
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link sidebar-toggle">
+                                        <i class="ti ti-align-right"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  " href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mega Menu
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu mega-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                        <div class="row no-gutters">
+                                            
+                                               
+                                            <div class="col-sm-2 p-20">
+                                                
+                                            
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="javascript:void(0)" class="nav-link " id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop Down
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item full-screen d-none d-lg-block" id="btnFullscreen">
+                                    <a href="javascript:void(0)" class="nav-link expand">
+                                        <i class="icon-size-fullscreen"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav nav-right ml-auto">
+                                
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fe fe-bell"></i>
+                                        <span class="notify">
+                                                    <span class="blink"></span>
+                                        <span class="dot"></span>
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu extended animated fadeIn" aria-labelledby="navbarDropdown">
+                                        <ul>
+                                            <li class="dropdown-header bg-gradient p-4 text-white text-left">Notifications
+                                                <a href="#" class="float-right btn btn-square btn-inverse-light btn-xs m-0">
+                                                    <span class="font-13"> Clear all</span></a>
+                                            </li>
+                                            <li class="dropdown-body min-h-240 nicescroll">
+                                                <ul class="scrollbar scroll_dark max-h-240">
+                                                    <li>
+                                                     
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link search" href="javascript:void(0)">
+                                        <i class="ti ti-search"></i>
+                                    </a>
+                                    <div class="search-wrapper">
+                                        <div class="close-btn">
+                                            <i class="ti ti-close"></i>
+                                        </div>
+                                        <div class="search-content">
+                                            <form>
+                                                <div class="form-group">
+                                                    <i class="ti ti-search magnifier"></i>
+                                                    <input type="text" class="form-control autocomplete" placeholder="Search Here" id="autocomplete-ajax" autofocus="autofocus">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--LOGOUT ICON-->
+                                <li class="nav-item dropdown user-profile">
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../static/images/logo.png" alt="avtar-img">
+                                        <span class="bg-success user-status"></span>
+                                    </a>
+                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                        <div class="bg-gradient px-4 py-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="mr-1">
+                                                    <h4 class="text-white mb-0">Alice Williams</h4>
+                                                    <small class="text-white">Henry@example.com</small>
+                                                </div>
+                                                <a href="#" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
+                                                                class="zmdi zmdi-power"></i></a>
+                                            </div>
+                                        </div>
+                                            
+                                        
+                                        
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end navigation -->
+                </nav>
+                <!-- end navbar -->
+            </header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-nabar -->
+                <aside class="app-navbar">
+                    <!-- begin sidebar-nav -->
+                    <div class="sidebar-nav scrollbar scroll_light">
+                        <ul class="metismenu " id="sidebarNav">
+                            <li class="nav-static-title">Personal</li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="nav-icon ti ti-rocket"></i>
+                                    <span class="nav-title">Dashboards</span>
+                                </a>
+                                <ul aria-expanded="false">
+                                    <li> <a href='#'>Users</a> </li>
+                                    <li> <a href='#'>Depertment</a> </li>
+                                    <li> <a href='#'>Approvers</a> </li>
+                                    <li> <a href='#'>Supervisors</a> </li>
+                                    <li> <a href='#'></a> </li>
+                                    <li> <a href='#'></a> </li>
+                                    <li> <a href='#'></a> </li>
+                                    <li> <a href='#'></a> </li>
+                                    <li> <a href='#'></a> </li>
+                                </ul>
+                            </li>
+                            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-book"></i><span class="nav-title">Registration</span></a>
+                                <ul aria-expanded="false">
+                                    <li> <a href='#'>Depertment</a> </li>
+                                    <li> <a href='#'>Supervisors</a> </li>
+                                    <li> <a href='#'>Approvers</a> </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-money"></i> <span class="nav-title">Accountability</span></a>
+                                <ul aria-expanded="false">
+                                    <li> <a href="#">Business Office</a> </li>
+                                    <li> <a href="#"></a> </li>
+                                    
+                                    <li> <a href="#"></a> </li>
+                                    <li> <a href="#"></a> </li>
+                                    
+                                    
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-logout"></i> <span class="nav-title">Logout</span></a>
+                                <ul aria-expanded="false">
+                                    <li> <a href="#">Logout</a> </li>
+                                    <li> <a href="#"></a> </li>
+                                </u>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end sidebar-nav -->
+                </aside>
+                <!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="col-md-12 m-b-30">
+                                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                                    <div class="page-title mb-2 mb-sm-0">
+                                    <!-- begin page title -->
+                                    <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                                        <div class="page-title mb-2 mb-sm-0">
+                                            <p>L</p>
+                                            <!-- Main Dashboard -->
+                                            <div class="row">
+                                                <div class="col">
+                                                        <div class="card text-center text-white mb-4" id="total-req">
+                                                            <div class="card-header">
+                                                                <h5 class="card-title"> Total Requestors</h5>
+
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h3 class="card-title"></h3>
+
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="col">
+                                                        <div class="card text-center text-white mb-4" id="order-delivered">
+                                                            <div class="card-header">
+                                                                <h5 class="card-title"> Total Requisitions</h5>
+
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h3 class="card-title"></h3>
+
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="col">
+                                                        <div class="card text-center text-white mb-4" id="order-pending">
+                                                            <div class="card-header">
+                                                                <h5 class="card-title"> Total Supervisors</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h3 class="card-title"></h3>
+
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="col">
+                                                        <div class="card text-center text-white mb-4" id="order-pending">
+                                                            <div class="card-header">
+                                                                <h5 class="card-title"> Total Approvers</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h3 class="card-title"></h3>
+
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        
+                        <!--mail-read-contant-end-->
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer class="footer">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-center text-sm-left">
+                        <p>&copy; Copyright 2024. All rights reserved.</p>
+                    </div>
+                    <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
+                        <p><a target="_blank" href="">developers</a></p>
+                    </div>
+                </div>
+            </footer>
+            <!-- end footer -->
         </div>
-
+        <!-- end app-wrap -->
     </div>
-    <div class="col-md-7">
+    <!-- end app -->
 
-    </div>
-</div>
 
-{% endblock  %}
+
+    <!-- plugins -->
+    <script src="../static/css/js/vendors.js"></script>
+
+    <!-- custom app -->
+    <script src="../static/css/js/app.js">
+    </script>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+</html>

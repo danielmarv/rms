@@ -2,7 +2,7 @@
 body {
     background-color: #ebeff5;
 }
-#total-order{
+#total-req{
     background-color: #4cb4c7;
 }
 #order-delivered{
@@ -10,9 +10,5 @@ body {
 }
 #order-pending{
     background-color: #9ab1b6;
-}
-.dark-blue-bg {
-    background-color: #666; /* Adjusted color - darker than original */
-    color: #ffffff; /* White text color */
 }
 
