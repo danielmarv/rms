@@ -41,8 +41,40 @@
                                 <td>{{ requisition.department }}</td>
                                 <td>{{ requisition.status }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success approve-btn" data-toggle="modal" data-target="#approvalModal" data-requisition-id="{{ requisition.id }}">Approve</button>   
-                                </tr>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#approvalModal{{ requisition.id }}">Approve</button>
+                                </td>
+                            </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="approvalModal{{ requisition.id }}" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel{{ requisition.id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="approvalModalLabel{{ requisition.id }}">Approve Requisition for {{ requisition.requester }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" >
+                                            
+                                        </div>
+                                        <div class="modal-body" id="approvalModalBody{{ requisition.id }}">
+                                            <form id="approvalForm{{ requisition.id }}" method="POST" action="{% url 'department_approval' requisition.id %}">
+                                                {% csrf_token %}
+                                                {{ form|crispy}}
+                                                <div class="form-group">
+                                                    <label for="comments">Comments:</label>
+                                                    <textarea class="form-control" id="comments{{ requisition.id }}" name="comments" rows="3"></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary" onclick="submitApprovalForm({{ requisition.id }})">Approve</button>
+                                                    <button type="submit" class="btn btn-danger">Reject</button> 
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -51,18 +83,29 @@
         </div>
     </div>
 </div>
-
 <script>
-    $('#approvalModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); 
-        var requisitionId = button.data('requisition-id');
-        var form = $('#approvalForm');
-        var action = form.attr('action').split('?')[0];  // Remove query parameters
-        form.attr('action', action + requisitionId + '/');
-    });
+    function submitApprovalForm(requisitionId) {
+        var comments = document.getElementById('comments' + requisitionId).value.trim();
+        if (!comments) {
+            alert('Please enter a comment.');
+            return;
+        }
+        var csrftoken = getCookie('csrftoken');
+        var url = '/staff/approve/' + requisitionId + '/';
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('X-CSRFToken', csrftoken);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log('Approval successful');
+                } else {
+                    console.error('Approval failed');
+                }
+            }
+        };
+        xhr.send('comments=' + encodeURIComponent(comments));
+    }
 </script>
-
-
-
-{% comment %} {% include 'approval_modal.html' %} {% endcomment %}
 {% endblock content %}
