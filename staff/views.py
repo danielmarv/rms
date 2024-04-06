@@ -3,7 +3,6 @@ from django.contrib import messages
 from .models import DepartmentApproval
 from .forms import DepartmentApprovalForm
 from client.models import Requisition  
-# from account.models import CustomUser  
 
 def department_approval(request, requisition_id):
     requisition = Requisition.objects.get(id=requisition_id)
